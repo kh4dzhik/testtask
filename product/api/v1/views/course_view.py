@@ -64,12 +64,7 @@ class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     permission_classes = (ReadOnlyOrIsAdmin,)
 
-    # def get_object(self):
-    #     instanse = super().get_object()
-    #     if self.request.user in instanse.students.all():
-    #         return instanse
-    #
-        # return HttpResponseForbidden()
+
 
     def get_serializer_class(self):
         if self.action in ['list', 'retrieve']:
