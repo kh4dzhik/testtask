@@ -10,12 +10,15 @@ def make_payment(request):
 class IsStudentOrIsAdmin(BasePermission):
     def has_permission(self, request, view):
         # TODO
-        pass
+        return bool(
+            request.user.is_authenticated or request.user.is_staff
+        )
 
     def has_object_permission(self, request, view, obj):
         # TODO
-        pass
-
+        return bool(
+            request.user in obj.course.students or request.user.is_staff
+        )
 
 class ReadOnlyOrIsAdmin(BasePermission):
 
